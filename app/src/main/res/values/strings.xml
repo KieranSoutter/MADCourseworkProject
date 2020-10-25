@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CourseworkProject</string>
+    <string name="tv_title">Quick Train Times App</string>
+    <string name="et_station">Search for your station</string>
+    <string name="tv_licensing">Kieran Soutter</string>
+    <string name="btn_submit">Search</string>
+    <string name="rdo_favorite">Favorite Station</string>
+</resources>

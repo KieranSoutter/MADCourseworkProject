@@ -5,4 +5,5 @@
     <string name="tv_licensing">Kieran Soutter</string>
     <string name="btn_submit">Search</string>
     <string name="rdo_favorite">Favorite Station</string>
+    <string name="tv_station"></string>
 </resources>

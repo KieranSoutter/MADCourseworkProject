@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             displayedStation = String.valueOf(etLocation.getText());
             displayDataDisplayActivity();
         }
-
-
     }
 
     private void displayDataDisplayActivity(){

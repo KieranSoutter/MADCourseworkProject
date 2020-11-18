@@ -28,7 +28,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
 
         // Sets up the buttons with the onClickListener() function
         Button btnGetStationMain = findViewById(R.id.btnGetStationData);
-        //This didn't work the first time, this didn't work the second time. I DON'T KNOW WHY ON EARTH THIS WORKED THE 3RD TIME... Oh Well!
+            //This didn't work the first time, this didn't work the second time. I DON'T KNOW WHY ON EARTH THIS WORKED THE 3RD TIME... Oh Well!
         btnGetStationMain.setOnClickListener(this);
 
 
@@ -40,8 +40,11 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         //If the button clicked is the station Search button then...
         if (view.getId() == R.id.btnGetStationData){
             //... get the location entered by the user...
-            EditText etLocation = findViewById(R.id.etGetLocation);
+            EditText etLocation = findViewById(R.id.etStationNameData);
             stationName = String.valueOf(etLocation.getText());
+            TextView tvStationName = findViewById(R.id.tvStationName);
+            String displaytext = stationName + " Station Departures";
+            tvStationName.setText(displaytext);
         }
     }
 }

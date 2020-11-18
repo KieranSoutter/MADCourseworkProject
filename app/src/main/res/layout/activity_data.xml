@@ -6,26 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etGetLocation"
-        android:layout_width="411dp"
-        android:layout_height="115dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/et_station"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnGetStationData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="24dp"
         android:text="@string/btn_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etGetLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/etStationNameData" />
 
     <RadioButton
         android:id="@+id/radioButton"
@@ -33,21 +22,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="@string/rdo_favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/btnGetStationData"
+        app:layout_constraintEnd_toStartOf="@+id/btnGetStationData"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etGetLocation" />
-
-    <TextView
-        android:id="@+id/TextViewStationName"
-        android:layout_width="411dp"
-        android:layout_height="115dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/et_station"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/btnGetStationData" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -65,5 +46,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGetStationData" />
+
+    <EditText
+        android:id="@+id/etStationNameData"
+        android:layout_width="359dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter Station Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

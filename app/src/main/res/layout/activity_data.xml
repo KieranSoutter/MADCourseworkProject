@@ -17,7 +17,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etStationNameData" />
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/rbFavoriteStation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

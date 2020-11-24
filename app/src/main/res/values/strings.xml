@@ -6,4 +6,6 @@
     <string name="btn_submit">Search</string>
     <string name="rdo_favorite">Favorite Station</string>
     <string name="tv_station"></string>
+    <string name="btn_favorite">Go To favorite station</string>
+    <string name="favorites"></string>
 </resources>

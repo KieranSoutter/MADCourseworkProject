@@ -1,10 +1,9 @@
 package com.example.courseworkproject;
 
-import android.app.AppComponentFactory;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,14 +22,19 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-        sharedPreferences = getSharedPreferences(getString(R.string.favorites), MODE_PRIVATE);
+
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
 
         Intent laucher = getIntent();
+        Context context = getApplicationContext();
+
         if (laucher.hasExtra(MainActivity.EXTRA_DISPLAYEDSTATION)){
             TextView tvStationName = findViewById(R.id.tvStationName);
             stationName = laucher.getStringExtra(MainActivity.EXTRA_DISPLAYEDSTATION);
             tvStationName.setText(stationName + " Station Departures");
+            TrainDisplay.getTrainInfoFromCloud(context, stationName);
         }
 
 
@@ -52,12 +56,15 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         //If the button clicked is the station Search button then...
         if (view.getId() == R.id.btnGetStationData){
+            Context context = getApplicationContext();
             //... get the location entered by the user...
             EditText etLocation = findViewById(R.id.etStationNameData);
             stationName = String.valueOf(etLocation.getText());
             TextView tvStationName = findViewById(R.id.tvStationName);
             String displaytext = stationName + " Station Departures";
             tvStationName.setText(displaytext);
+            TrainDisplay.getTrainInfoFromCloud(context, stationName);
+
         }
         if (view.getId() == R.id.rbFavoriteStation){
 
@@ -76,4 +83,11 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
     }
 
 
+
+    //Android back bar Code adapted from https://stackoverflow.com/questions/15686555/display-back-button-on-action-bar
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }

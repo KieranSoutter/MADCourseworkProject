@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+//The following code is my own unless uniquely specified before hand
+//I have mainly used resources available on my university's Campus Moodle in order to obtain the background knowledge for this application.
+//I have also utilised https://developer.android.com/training for this work in order to further understand functions
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     String displayedStation;

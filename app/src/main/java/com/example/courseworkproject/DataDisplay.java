@@ -34,7 +34,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TextView tvStationName = findViewById(R.id.tvStationName);
             stationName = laucher.getStringExtra(MainActivity.EXTRA_DISPLAYEDSTATION);
             tvStationName.setText(stationName + " Station Departures");
-            TrainDisplay.getTrainInfoFromCloud(context, stationName);
+            TrainDisplay.getStationInfoFromCloud(context, stationName);
         }
 
 
@@ -63,7 +63,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TextView tvStationName = findViewById(R.id.tvStationName);
             String displaytext = stationName + " Station Departures";
             tvStationName.setText(displaytext);
-            TrainDisplay.getTrainInfoFromCloud(context, stationName);
+            TrainDisplay.getStationInfoFromCloud(context, stationName);
 
         }
         if (view.getId() == R.id.rbFavoriteStation){

@@ -98,6 +98,8 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         if (view.getId() == R.id.btn_goTO){
 
             // Search for the station on maps
+            // It was going to open navigation however i could not get this to effectively test as the location was set to san fransisco and would therefore pick the closest place called aberdeen
+            // Testing this without location services on shows the intended result
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + stationName + " Station");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");

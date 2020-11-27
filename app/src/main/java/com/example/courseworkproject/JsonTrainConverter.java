@@ -34,11 +34,10 @@ public class JsonTrainConverter {
         List<String> trains = new ArrayList<String>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
-            JSONObject trainsObject = jsonObject.getJSONObject("departures");
-            Iterator<String> trainKeysIter = trainsObject.keys();
-            while (trainKeysIter.hasNext()){
-                String trainKey = trainKeysIter.next();
-                JSONObject trainObject = trainsObject.getJSONObject(trainKey);
+            JSONObject jsonTrains = jsonObject.getJSONObject("departures");
+            JSONArray jsonArray = jsonTrains.getJSONArray("all");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject trainObject = jsonArray.getJSONObject(i);
 
                 String trains1 = (trainObject.getString("destination_name"));
                 String trains2 = (trainObject.getString("aimed_departure_time"));

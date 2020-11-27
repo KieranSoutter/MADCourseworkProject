@@ -11,15 +11,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import static android.app.PendingIntent.getActivity;
 
 public class DataDisplay extends AppCompatActivity implements View.OnClickListener {
 
-    public String stationName;
+    public String stationName = "Error";
+
     private SharedPreferences sharedPreferences;
+
 
 
     @Override
@@ -28,8 +28,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_data);
 
 
-
-
+        sharedPreferences = getSharedPreferences(getString(R.string.favorites), MODE_PRIVATE);
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
@@ -81,6 +80,8 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
 
         }
         if (view.getId() == R.id.rbFavoriteStation){
+
+
 
             SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
 

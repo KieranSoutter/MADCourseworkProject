@@ -44,7 +44,7 @@ public class JsonTrainConverter {
                 String trains3 = (trainObject.getString("operator_name"));
                 String trains4 = (trainObject.getString("platform"));
 
-                trains.add("Destination :" + trains1 + trains2 + trains3 + trains4);
+                trains.add("Destination: " + trains1 + "\nDeparture Time: " + trains2 + "\n" + trains3 + "     Platform: " + trains4);
                 Log.d(TAG, trains.get(0));
             }
         } catch (JSONException e) {

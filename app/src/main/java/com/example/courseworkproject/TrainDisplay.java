@@ -71,7 +71,9 @@ public class TrainDisplay {
                 Log.d(TAG, "success" + response);
                 List<String> trains = JsonTrainConverter.convertJsonStringToTrains(response);
 
-
+                //Why i used a ListView instead of a Recycler View
+                //Due to the limited purposes of the list it was more efficient in development time to utilise the listView instead of the recyclerView however, in future development a recylcerView will...
+                //... remain on the roadmap as it allows images to be displayed to show the train operator logos which may be more recognisable than just seeing the name of the TOC.
                 ArrayAdapter <String> arrayAdapter  = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, trains);
 
                 listView.setAdapter(arrayAdapter);

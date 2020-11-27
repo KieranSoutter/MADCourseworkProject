@@ -3,22 +3,32 @@ package com.example.courseworkproject;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import android.view.View;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 public class TrainDisplay {
 
-    public static void getStationInfoFromCloud(final Context context, String station){
+    public String destination;
+    public String departureTime;
+    public String platformNumber;
+    public String operatorName;
+
+
+
+    public static void getStationInfoFromCloud(final Context context, String station, final RecyclerView recyclerView){
         String applicationID = "d8e690f5";
         String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a";
         String url = "http://transportapi.com/v3/uk/places.json?query=" + station + "&type=train_station&app_id=" + applicationID +"&app_key=" + apiKey;
@@ -31,7 +41,7 @@ public class TrainDisplay {
                 Log.d(TAG, "Success" + response);
                 JsonTrainConverter converter = new JsonTrainConverter();
                 String suffix = converter.getSuffix(response);
-                getTrainInfoFromCloud(context, suffix);
+                getTrainInfoFromCloud(context, suffix, recyclerView);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -44,11 +54,11 @@ public class TrainDisplay {
         requestQueue.add(request);
     }
 
-    public static void getTrainInfoFromCloud(Context context, String station){
+    public static void getTrainInfoFromCloud(final Context context, String station, final RecyclerView recyclerView){
         //api config to make it easier to change api key or if the app is looking for passenger or freight
         String applicationID = "d8e690f5";
         String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a";
-        String darwin = "false"; //darwin = to recive additional data from other data feeds to increase accuracy however this appears to slow down search results
+        String darwin = "false"; //darwin = to receive additional data from other data feeds to increase accuracy however this appears to slow down search results
         String status = "passenger";
 
         String url = "https://transportapi.com/v3/uk/train/station/" + station + "/live.json?app_id=" + applicationID + "&app_key=" + apiKey + "&darwin=" + darwin + "&train_status=" + status;
@@ -57,6 +67,11 @@ public class TrainDisplay {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "success" + response);
+                JsonTrainConverter converter = new JsonTrainConverter();
+                List<TrainDisplay> trains = converter.convertJsonStringToTrains(response);
+                RecyclerView.Adapter adapter = new TrainRecyclerViewAdapter(context, trains);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
             }
         }, new Response.ErrorListener() {
                 @Override
@@ -72,5 +87,21 @@ public class TrainDisplay {
     }
 
 
+    public void setDestination(String destination){
+        this.destination = destination;
+    }
+    public void setDepartureTime(String departureTime){
+        this.destination = departureTime;
+    }
+    public void setPlatformNumber(String platformNumber){
+        this.destination = platformNumber;
+    }
+    public void setOperatorName(String operatorName){
+        this.destination = operatorName;
+    }
 
+
+    public String getDestination(){
+        return destination;
+    }
     }

@@ -10,6 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class DataDisplay extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +27,9 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_data);
 
 
+
+
+
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
@@ -34,8 +41,13 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TextView tvStationName = findViewById(R.id.tvStationName);
             stationName = laucher.getStringExtra(MainActivity.EXTRA_DISPLAYEDSTATION);
             tvStationName.setText(stationName + " Station Departures");
-            TrainDisplay.getStationInfoFromCloud(context, stationName);
+
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            TrainDisplay.getStationInfoFromCloud(context, stationName, recyclerView);
+
         }
+
+
 
 
         // Sets up the buttons with the onClickListener() function
@@ -63,7 +75,8 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TextView tvStationName = findViewById(R.id.tvStationName);
             String displaytext = stationName + " Station Departures";
             tvStationName.setText(displaytext);
-            TrainDisplay.getStationInfoFromCloud(context, stationName);
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            TrainDisplay.getStationInfoFromCloud(context, stationName, recyclerView);
 
         }
         if (view.getId() == R.id.rbFavoriteStation){

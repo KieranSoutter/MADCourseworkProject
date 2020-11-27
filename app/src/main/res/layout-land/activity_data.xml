@@ -4,70 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:windowSoftInputMode="adjustResize"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnGetStationData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="@string/btn_submit"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lv_TrainsView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etStationNameData" />
+        app:layout_constraintTop_toBottomOf="@+id/rbFavoriteStation" />
 
     <RadioButton
         android:id="@+id/rbFavoriteStation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="@string/rdo_favorite"
-        app:layout_constraintBottom_toBottomOf="@+id/btnGetStationData"
-        app:layout_constraintEnd_toStartOf="@+id/btnGetStationData"
+        app:layout_constraintEnd_toStartOf="@+id/lv_TrainsView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnGetStationData" />
+        app:layout_constraintTop_toBottomOf="@+id/etStationNameData" />
 
     <TextView
         android:id="@+id/tvStationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_station"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lv_TrainsView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGetStationData" />
 
     <EditText
         android:id="@+id/etStationNameData"
-        android:layout_width="359dp"
-        android:layout_height="86dp"
+        android:layout_width="311dp"
+        android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Enter Station Name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lv_TrainsView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lv_TrainsView"
-        android:layout_width="405dp"
-        android:layout_height="329dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="379dp"
+        android:layout_height="312dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvStationName" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_goTO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_goTo"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lv_TrainsView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvStationName" />
 

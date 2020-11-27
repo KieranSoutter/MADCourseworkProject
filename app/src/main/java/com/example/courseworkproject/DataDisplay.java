@@ -3,6 +3,7 @@ package com.example.courseworkproject;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +60,9 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         Button btnGetFavorite = findViewById(R.id.rbFavoriteStation);
         btnGetFavorite.setOnClickListener(this);
 
+        Button btnGoTo = findViewById(R.id.btn_goTO);
+        btnGoTo.setOnClickListener(this);
+
 
 
 
@@ -89,6 +93,16 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             prefsEditor.putString(favKey, stationName);
 
             prefsEditor.apply();
+        }
+
+        if (view.getId() == R.id.btn_goTO){
+
+            // Search for the station on maps
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + stationName + " Station");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+
         }
 
     }

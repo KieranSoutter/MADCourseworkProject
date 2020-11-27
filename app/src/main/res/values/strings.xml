@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CourseworkProject</string>
+    <string name="app_name">Quick Train Times App</string>
     <string name="tv_title">Quick Train Times App</string>
     <string name="et_station">Search for your station</string>
     <string name="tv_licensing">Kieran Soutter, Data extracted from TransportAPI</string>
@@ -7,5 +7,6 @@
     <string name="rdo_favorite">Favorite Station</string>
     <string name="tv_station"></string>
     <string name="btn_favorite">Go To favorite station</string>
+    <string name="btn_goTo">Go To This Station</string>
     <string name="favorites"></string>
 </resources>

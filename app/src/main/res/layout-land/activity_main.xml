@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:windowSoftInputMode="adjustResize"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginLeft="176dp"
-        android:layout_marginTop="147dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="176dp"
         android:layout_marginRight="176dp"
         android:text="@string/tv_title"
@@ -25,7 +24,6 @@
         android:id="@+id/etGetLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/et_station"
         android:inputType="textPersonName"
@@ -54,7 +52,6 @@
         android:id="@+id/btn_getfavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/btn_favorite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

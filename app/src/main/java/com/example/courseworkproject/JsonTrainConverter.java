@@ -30,8 +30,8 @@ public class JsonTrainConverter {
     }
 
 
-    public static List<TrainDisplay> convertJsonStringToTrains(String jsonString){
-        List<TrainDisplay> trains = new ArrayList<TrainDisplay>();
+    public static List<String> convertJsonStringToTrains(String jsonString){
+        List<String> trains = new ArrayList<String>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONObject trainsObject = jsonObject.getJSONObject("departures");
@@ -39,14 +39,14 @@ public class JsonTrainConverter {
             while (trainKeysIter.hasNext()){
                 String trainKey = trainKeysIter.next();
                 JSONObject trainObject = trainsObject.getJSONObject(trainKey);
-                TrainDisplay train = new TrainDisplay();
-                train.setDestination(trainObject.getString("destination_name"));
-                train.setDepartureTime(trainObject.getString("aimed_departure_time"));
-                train.setOperatorName(trainObject.getString("operator_name"));
-                train.setPlatformNumber(trainObject.getString("platform"));
-                trains.add(train);
 
+                String trains1 = (trainObject.getString("destination_name"));
+                String trains2 = (trainObject.getString("aimed_departure_time"));
+                String trains3 = (trainObject.getString("operator_name"));
+                String trains4 = (trainObject.getString("platform"));
 
+                trains.add("Destination :" + trains1 + trains2 + trains3 + trains4);
+                Log.d(TAG, trains.get(0));
             }
         } catch (JSONException e) {
             e.printStackTrace();

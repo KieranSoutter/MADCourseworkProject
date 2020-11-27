@@ -13,6 +13,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class TrainDisplay {
 
 
 
-    public static void getStationInfoFromCloud(final Context context, String station, final RecyclerView recyclerView){
+    public static void getStationInfoFromCloud(final Context context, String station, final ListView listView){
         String applicationID = "d8e690f5";
         String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a";
         String url = "http://transportapi.com/v3/uk/places.json?query=" + station + "&type=train_station&app_id=" + applicationID +"&app_key=" + apiKey;
@@ -41,7 +43,7 @@ public class TrainDisplay {
                 Log.d(TAG, "Success" + response);
                 JsonTrainConverter converter = new JsonTrainConverter();
                 String suffix = converter.getSuffix(response);
-                getTrainInfoFromCloud(context, suffix, recyclerView);
+                getTrainInfoFromCloud(context, suffix, listView);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -54,7 +56,7 @@ public class TrainDisplay {
         requestQueue.add(request);
     }
 
-    public static void getTrainInfoFromCloud(final Context context, String station, final RecyclerView recyclerView){
+    public static void getTrainInfoFromCloud(final Context context, String station, final ListView listView){
         //api config to make it easier to change api key or if the app is looking for passenger or freight
         String applicationID = "d8e690f5";
         String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a";
@@ -67,11 +69,12 @@ public class TrainDisplay {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "success" + response);
-                JsonTrainConverter converter = new JsonTrainConverter();
-                List<TrainDisplay> trains = converter.convertJsonStringToTrains(response);
-                RecyclerView.Adapter adapter = new TrainRecyclerViewAdapter(context, trains);
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                List<String> trains = JsonTrainConverter.convertJsonStringToTrains(response);
+
+
+                ArrayAdapter <String> arrayAdapter  = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, trains);
+
+                listView.setAdapter(arrayAdapter);
             }
         }, new Response.ErrorListener() {
                 @Override

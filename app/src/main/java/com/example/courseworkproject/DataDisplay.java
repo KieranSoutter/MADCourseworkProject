@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,8 +43,8 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             stationName = laucher.getStringExtra(MainActivity.EXTRA_DISPLAYEDSTATION);
             tvStationName.setText(stationName + " Station Departures");
 
-            RecyclerView recyclerView = findViewById(R.id.recyclerView);
-            TrainDisplay.getStationInfoFromCloud(context, stationName, recyclerView);
+            ListView listView = (ListView) findViewById(R.id.lv_TrainsView);
+            TrainDisplay.getStationInfoFromCloud(context, stationName, listView);
 
         }
 
@@ -75,8 +76,8 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TextView tvStationName = findViewById(R.id.tvStationName);
             String displaytext = stationName + " Station Departures";
             tvStationName.setText(displaytext);
-            RecyclerView recyclerView = findViewById(R.id.recyclerView);
-            TrainDisplay.getStationInfoFromCloud(context, stationName, recyclerView);
+            ListView listView = findViewById(R.id.lv_TrainsView);
+            TrainDisplay.getStationInfoFromCloud(context, stationName, listView);
 
         }
         if (view.getId() == R.id.rbFavoriteStation){

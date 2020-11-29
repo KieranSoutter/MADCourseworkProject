@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 import static android.app.PendingIntent.getActivity;
 
 public class DataDisplay extends AppCompatActivity implements View.OnClickListener {
@@ -20,7 +22,6 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
     public String stationName = "Error";
 
     private SharedPreferences sharedPreferences;
-
 
 
     @Override
@@ -38,7 +39,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         Intent laucher = getIntent();
         Context context = getApplicationContext();
 
-        if (laucher.hasExtra(MainActivity.EXTRA_DISPLAYEDSTATION)){
+        if (laucher.hasExtra(MainActivity.EXTRA_DISPLAYEDSTATION)) {
             TextView tvStationName = findViewById(R.id.tvStationName);
             stationName = laucher.getStringExtra(MainActivity.EXTRA_DISPLAYEDSTATION);
             tvStationName.setText(stationName + " Station Departures");
@@ -47,8 +48,6 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TrainDisplay.getStationInfoFromCloud(context, stationName, listView);
 
         }
-
-
 
 
         // Sets up the buttons with the onClickListener() function
@@ -64,14 +63,12 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         btnGoTo.setOnClickListener(this);
 
 
-
-
     }
 
     @Override
     public void onClick(View view) {
         //If the button clicked is the station Search button then...
-        if (view.getId() == R.id.btnGetStationData){
+        if (view.getId() == R.id.btnGetStationData) {
             Context context = getApplicationContext();
             //... get the location entered by the user...
             EditText etLocation = findViewById(R.id.etStationNameData);
@@ -83,8 +80,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             TrainDisplay.getStationInfoFromCloud(context, stationName, listView);
 
         }
-        if (view.getId() == R.id.rbFavoriteStation){
-
+        if (view.getId() == R.id.rbFavoriteStation) {
 
 
             SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
@@ -95,7 +91,7 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
             prefsEditor.apply();
         }
 
-        if (view.getId() == R.id.btn_goTO){
+        if (view.getId() == R.id.btn_goTO) {
 
             // Search for the station on maps
             // It was going to open navigation however i could not get this to effectively test as the location was set to san fransisco and would therefore pick the closest place called aberdeen
@@ -109,10 +105,9 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
     }
-
 
 
     //Android back bar Code adapted from https://stackoverflow.com/questions/15686555/display-back-button-on-action-bar
@@ -121,4 +116,10 @@ public class DataDisplay extends AppCompatActivity implements View.OnClickListen
         finish();
         return true;
     }
+
+
+    public static void onError(TextView tvStationName) {
+        tvStationName.setText("Station not found, if the error continues please check your spelling and your internet connection");
+    }
+
 }

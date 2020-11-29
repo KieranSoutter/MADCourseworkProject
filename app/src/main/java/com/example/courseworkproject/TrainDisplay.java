@@ -3,20 +3,20 @@ package com.example.courseworkproject;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import android.view.View;
+
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -45,7 +45,7 @@ public class TrainDisplay {
                 String suffix = converter.getSuffix(response);
                 getTrainInfoFromCloud(context, suffix, listView);
             }
-        }, new Response.ErrorListener() {
+        }, new ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "error" + error.getLocalizedMessage());
@@ -65,7 +65,7 @@ public class TrainDisplay {
 
         String url = "https://transportapi.com/v3/uk/train/station/" + station + "/live.json?app_id=" + applicationID + "&app_key=" + apiKey + "&darwin=" + darwin + "&train_status=" + status;
 
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "success" + response);
@@ -74,16 +74,22 @@ public class TrainDisplay {
                 //Why i used a ListView instead of a Recycler View
                 //Due to the limited purposes of the list it was more efficient in development time to utilise the listView instead of the recyclerView however, in future development a recylcerView will...
                 //... remain on the roadmap as it allows images to be displayed to show the train operator logos which may be more recognisable than just seeing the name of the TOC.
-                ArrayAdapter <String> arrayAdapter  = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, trains);
 
+                ArrayAdapter<String> arrayAdapter;
+                arrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, trains);
                 listView.setAdapter(arrayAdapter);
             }
         }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d(TAG, "error" + error.getLocalizedMessage());
-                }
-            });
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "error" + error.getLocalizedMessage());
+                List<String> errors = new ArrayList<String>();
+                errors.add("Station not found, if the error continues please check your spelling and your internet connection");
+                ArrayAdapter<String> arrayAdapter;
+                arrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, errors);
+                listView.setAdapter(arrayAdapter);
+            }
+        });
 
 
         RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
@@ -92,7 +98,8 @@ public class TrainDisplay {
     }
 
 
-    public void setDestination(String destination){
+
+        public void setDestination(String destination){
         this.destination = destination;
     }
     public void setDepartureTime(String departureTime){

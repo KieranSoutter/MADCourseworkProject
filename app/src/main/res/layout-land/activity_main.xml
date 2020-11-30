@@ -56,4 +56,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_StationSearch" />
+
+    <Button
+        android:id="@+id/btn_userprefs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_UserPrefrences"
+        app:layout_constraintEnd_toEndOf="@+id/btn_getfavorite"
+        app:layout_constraintStart_toStartOf="@+id/btn_getfavorite"
+        app:layout_constraintTop_toBottomOf="@+id/btn_getfavorite" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,5 +8,10 @@
     <string name="tv_station"></string>
     <string name="btn_favorite">Go To favorite station</string>
     <string name="btn_goTo">Go To This Station</string>
+    <string name="tv_viewfavorite">User Preferences</string>
+    <string name="btn_setNewFavorite">Set as new favorite</string>
+    <string name="tv_showfavorite">Current Favorite:</string>
+    <string name="tv_currentfavorite"></string>
     <string name="favorites"></string>
+    <string name="btn_UserPrefrences">User Preferences</string>
 </resources>

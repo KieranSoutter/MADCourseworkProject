@@ -17,7 +17,7 @@ import org.w3c.dom.Text;
 
 import static android.app.PendingIntent.getActivity;
 
-public class DataDisplay extends AppCompatActivity implements View.OnClickListener {
+public class DataDisplayActivity extends AppCompatActivity implements View.OnClickListener {
 
     public String stationName = "Error";
 

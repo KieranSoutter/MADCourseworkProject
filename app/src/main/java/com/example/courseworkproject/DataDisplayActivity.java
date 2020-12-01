@@ -19,26 +19,36 @@ import static android.app.PendingIntent.getActivity;
 
 public class DataDisplayActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Defines the stationName variable as a string 
     public String stationName = "Error";
 
+    //Declares sharedPreferences as a private Shared Preferences variable
     private SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Sets the content view to the activity_data layout
         setContentView(R.layout.activity_data);
 
-
+        //gets the shared preferences from the favorites string
         sharedPreferences = getSharedPreferences(getString(R.string.favorites), MODE_PRIVATE);
 
+        //See line 117 for more details on lines 29 and 40
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
-
+        //gets the intent
         Intent laucher = getIntent();
+        //gets the application context
         Context context = getApplicationContext();
 
+
+        //if the intent has passed a variable called EXTRA_DISPLAYEDSTATION then...
+        //Set the text view to the station name + station departures
+        //Get the list view
+        //and call the getstationfromcloud function from TrainDisplay while passing Context, the station name, and the list view
         if (laucher.hasExtra(MainActivity.EXTRA_DISPLAYEDSTATION)) {
             TextView tvStationName = findViewById(R.id.tvStationName);
             stationName = laucher.getStringExtra(MainActivity.EXTRA_DISPLAYEDSTATION);
@@ -59,6 +69,7 @@ public class DataDisplayActivity extends AppCompatActivity implements View.OnCli
         Button btnGetFavorite = findViewById(R.id.rbFavoriteStation);
         btnGetFavorite.setOnClickListener(this);
 
+        //Sets up the go to station button listener
         Button btnGoTo = findViewById(R.id.btn_goTO);
         btnGoTo.setOnClickListener(this);
 
@@ -68,9 +79,12 @@ public class DataDisplayActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         //If the button clicked is the station Search button then...
+        //Set the text view to the station name + station departures
+        //Get the list view
+        //and call the getstationfromcloud function from TrainDisplay while passing Context, the station name, and the list view
         if (view.getId() == R.id.btnGetStationData) {
             Context context = getApplicationContext();
-            //... get the location entered by the user...
+
             EditText etLocation = findViewById(R.id.etStationNameData);
             stationName = String.valueOf(etLocation.getText());
             TextView tvStationName = findViewById(R.id.tvStationName);
@@ -80,6 +94,11 @@ public class DataDisplayActivity extends AppCompatActivity implements View.OnCli
             TrainDisplay.getStationInfoFromCloud(context, stationName, listView);
 
         }
+        //if the radio button is clicked to set a
+        //Set the Shared preferences editor
+        //Set the fav key to the string we store the favorites to (in this case R.string.favorites)
+        //put the string into the fav key using the prefs editor
+        //apply the code using the prefs editor
         if (view.getId() == R.id.rbFavoriteStation) {
 
 
@@ -95,10 +114,15 @@ public class DataDisplayActivity extends AppCompatActivity implements View.OnCli
 
             // Search for the station on maps
             // It was going to open navigation however i could not get this to effectively test as the location was set to san fransisco and would therefore pick the closest place called aberdeen
-            // Testing this without location services on shows the intended result
+            // Testing this without location services on shows the intended result and in the end actually gives the user more options
+
+            //this gives the uri a search term to parse
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + stationName + " Station");
+            //sets the intent to the actionview and applys the URI from before
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            //set the package to the android maps app
             mapIntent.setPackage("com.google.android.apps.maps");
+            //start the activity
             startActivity(mapIntent);
 
         }
@@ -116,10 +140,4 @@ public class DataDisplayActivity extends AppCompatActivity implements View.OnCli
         finish();
         return true;
     }
-
-
-    public static void onError(TextView tvStationName) {
-        tvStationName.setText("Station not found, if the error continues please check your spelling and your internet connection");
-    }
-
 }

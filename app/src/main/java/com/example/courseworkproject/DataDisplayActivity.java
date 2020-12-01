@@ -35,7 +35,7 @@ public class DataDisplayActivity extends AppCompatActivity implements View.OnCli
         //gets the shared preferences from the favorites string
         sharedPreferences = getSharedPreferences(getString(R.string.favorites), MODE_PRIVATE);
 
-        //See line 117 for more details on lines 29 and 40
+        //See line 117 for more details on lines 39 and 40
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 

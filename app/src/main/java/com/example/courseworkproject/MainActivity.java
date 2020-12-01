@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-//The following code is my own unless uniquely specified before hand
+//The following code is my own unless uniquely specified in comment or below
 //I have mainly used resources available on my university's Campus Moodle in order to obtain the background knowledge for this application.
 //I have also utilised https://developer.android.com/training for this work in order to further understand functions
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

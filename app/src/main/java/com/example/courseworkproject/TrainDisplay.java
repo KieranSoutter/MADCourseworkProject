@@ -23,12 +23,6 @@ import static android.content.ContentValues.TAG;
 
 public class TrainDisplay {
 
-    public String destination;
-    public String departureTime;
-    public String platformNumber;
-    public String operatorName;
-
-
     public static void getStationInfoFromCloud(final Context context, String station, final ListView listView) {
         String applicationID = "d8e690f5"; //sets the application ID variable as a string and passes the relevent ApplicationID to it
         String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a"; //sets the apiKey variable as a string and passes the relevent ApiKey to it

@@ -14,7 +14,7 @@ import static android.content.ContentValues.TAG;
 
 public class JsonTrainConverter {
 
-    //Code for getting the stations 3 letter suffix... more info on suffixes/station codes at https://www.nationalrail.co.uk/stations_destinations/48541.aspx
+    //Function for getting the stations 3 letter suffix... more info on suffixes/station codes at https://www.nationalrail.co.uk/stations_destinations/48541.aspx
     public static String getSuffix(String jsonString){
         String suffix; //Defines the suffix variable as a string
         try { //TRY this and if that does not work...
@@ -30,7 +30,7 @@ public class JsonTrainConverter {
         return suffix; //returns the suffix variable from the function
     }
 
-
+    //function to convert jsonString to displayable information
     public static List<String> convertJsonStringToTrains(String jsonString){
         List<String> trains = new ArrayList<String>(); //sets a new ArrayList to the variable trains
         try { //TRY this and if that does not work...

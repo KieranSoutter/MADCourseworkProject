@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //Function for loading the data display activity
     private void displayDataDisplayActivity(){
         //get the intent for the Data Display Activity
         Intent intent = new Intent(getApplicationContext(), DataDisplayActivity.class);
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
 
     }
-
+    //Function for loading the UserPrefsDisplay Activity
     private void UserPrefsDisplayActivity(){
         //get the intent for the UserPreferences Activity
         Intent intent = new Intent(getApplicationContext(), UserPreferencesActivity.class);

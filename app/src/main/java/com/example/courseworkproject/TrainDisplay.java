@@ -23,6 +23,7 @@ import static android.content.ContentValues.TAG;
 
 public class TrainDisplay {
 
+    //Function For getting the station suffix
     public static void getStationInfoFromCloud(final Context context, String station, final ListView listView) {
         String applicationID = "d8e690f5"; //sets the application ID variable as a string and passes the relevent ApplicationID to it
         String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a"; //sets the apiKey variable as a string and passes the relevent ApiKey to it
@@ -48,10 +49,11 @@ public class TrainDisplay {
         requestQueue.add(request); //adds a request to the queue
     }
 
+    //function for getting the Train Info from a station
     public static void getTrainInfoFromCloud(final Context context, String station, final ListView listView) {
         //api config to make it easier to change api key or if the app is looking for passenger or freight
-        String applicationID = "d8e690f5"; //sets the application ID variable as a string and passes the relevent ApplicationID to it
-        String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a";  //sets the apiKey variable as a string and passes the relevent ApiKey to it
+        String applicationID = "d8e690f5"; //sets the application ID variable as a string and passes the relevant ApplicationID to it
+        String apiKey = "a64dcf1d1dd8d45481bd33c43bafe55a";  //sets the apiKey variable as a string and passes the relevant ApiKey to it
         String darwin = "false"; //darwin = to receive additional data from other data feeds to increase accuracy however this appears to slow down search results
         String status = "passenger";  //status = to receive freight or passenger data
 
